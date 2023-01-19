@@ -26,7 +26,6 @@
 @import url(../blocks/profile/__title/profile__title.css);
 /* elements */
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/elements/__card/elements__card.css);
 @import url(../blocks/elements/__content/elements__content.css);
 @import url(../blocks/elements/__img/elements__img.css);
 @import url(../blocks/elements/__info/elements__info.css);
@@ -47,3 +46,4 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__content/popup__content.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__string-job/popup__string-job.css);
