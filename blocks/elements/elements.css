@@ -1,0 +1,19 @@
+.elements {
+  margin: 0 auto;
+  padding: 51px 0 0;
+}
+
+@media screen and (max-width: 930px) {
+  .elements {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .elements {
+    padding-top: 36px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

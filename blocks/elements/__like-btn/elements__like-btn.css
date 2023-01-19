@@ -1,0 +1,8 @@
+.elements__like-btn {
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  justify-content: flex-end;
+  border: none;
+  background: url(../../../images/like-button-disabled.svg) center no-repeat;
+}

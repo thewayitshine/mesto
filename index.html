@@ -8,83 +8,98 @@
   <title>Mesto</title>
 </head>
 <body class="page">
-  <header class="header">
-    <a href="#" class="link-opacity"><img class="header__logo" src="./images/header-logo.svg" alt="Логотип Место Россия"></a>
-  </header>
-  <main class="content">
-    <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.svg" alt="Жак-Ив Кусто в красной шапке">
-      <div class="profile__info">
-        <div class="profile__name">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn button link-opacity" type="button"></button>
+  <section class="container">
+    <header class="header">
+      <a href="#" class="link-opacity"><img class="header__logo" src="./images/header-logo.svg" alt="Логотип Место Россия"></a>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/avatar.svg" alt="Жак-Ив Кусто в красной шапке">
+        <div class="profile__info">
+          <div class="profile__name">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn button link-opacity" type="button"></button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <button class="profile__add-btn button link-opacity" type="button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="elements__card">
+            <figure class="elements__content">
+             <img class="elements__img" src="./images/Kazan.jpg" alt="Мечеть Кул-Шариф">
+             <figcaption class="elements__info">
+                <h2 class="elements__title">Казань</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+             </figcaption>
+            </figure>
+          </li>
+          <li class="elements__card">
+            <figure class="elements__content">
+              <img class="elements__img" src="./images/Innopolis.jpg" alt="Здание университета Иннополис">
+              <figcaption class="elements__info">
+                <h2 class="elements__title">Иннополис</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__card">
+            <figure class="elements__content">
+              <img class="elements__img" src="./images/Bolgar.jpg" alt="Белая Мечеть в городе Болгар">
+              <figcaption class="elements__info">
+                <h2 class="elements__title">Болгар</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__card">
+            <figure class="elements__content">
+              <img class="elements__img" src="./images/Kama-mouth.jpg" alt="Солнечный вид на Камское устье">
+              <figcaption class="elements__info">
+                <h2 class="elements__title">Камское устье</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__card">
+            <figure class="elements__content">
+              <img class="elements__img" src="./images/Sviyazhsk.jpg" alt="Остров-град Свияжск">
+              <figcaption class="elements__info">
+                <h2 class="elements__title">Свияжск</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li class="elements__card">
+            <figure class="elements__content">
+              <img class="elements__img" src="./images/Volga.jpg" alt="Пароход плывёт по Волге">
+              <figcaption class="elements__info">
+                <h2 class="elements__title">Река Волга</h2>
+                <button class="elements__like-btn elements__like-btn_active button link-opacity" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </footer>
+  </section>
+  <div class="popup">
+    <div class="popup__content">
+      <button class="popup__close-btn button link-opacity" type="button"></button>
+      <div class="popup__container">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <fieldset class="popup__form">
+          <input class="popup__string" name="userName" type="text" placeholder="Имя" value="Жак-Ив Кусто">
+          <input class="popup__string" name="userInfo" type="text" placeholder="Информация о пользователе" value="Исследователь океана">
+        </fieldset>
+        <button class="popup__save-btn button link-opacity" type="submit">Сохранить</button>
       </div>
-      <button class="profile__add-btn button link-opacity" type="button"></button>
-    </section>
-    <section class="elements">
-      <ul class="elements__list">
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Казань.jpg" alt="Мечеть Кул-Шариф">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Казань</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Иннополис.jpg" alt="Здание университета Иннополис">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Иннополис</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Болгар.jpg" alt="Белая Мечеть в городе Болгар">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Болгар</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Камское устье.jpg" alt="Солнечный вид на Камское устье">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Камское устье</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Свияжск.jpg" alt="Остров-град Свияжск">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Свияжск</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="elements__card">
-          <figure class="elements__content">
-            <img class="elements__img" src="./images/Волга.jpg" alt="Пароход плывёт по Волге">
-            <figcaption class="elements__info">
-              <h2 class="elements__title">Река Волга</h2>
-              <button class="elements__like-btn elements__like-btn_active button link-opacity"></button>
-            </figcaption>
-          </figure>
-        </li>
-      </ul>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-  </footer>
+    </div>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
