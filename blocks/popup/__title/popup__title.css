@@ -1,4 +1,6 @@
 .popup__title {
+  max-width: 340px;
+  max-height: 30px;
   margin: 0;
   padding: 0;
   align-self: flex-start;
@@ -6,6 +8,7 @@
   font-weight: 900;
   line-height: 29px;
   color: #000;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 634px) {

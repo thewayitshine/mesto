@@ -5,4 +5,10 @@
   justify-content: flex-end;
   border: none;
   background: url(../../../images/like-button-disabled.svg) center no-repeat;
+  opacity: 1;
+  transition: opacity .10s ease .09s;
+}
+
+.elements__like-btn:hover {
+  opacity: .5;
 }

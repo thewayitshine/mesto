@@ -9,6 +9,13 @@
  border: none;
  color: #fff;
  background: #000;
+ opacity: 1;
+ transition: opacity .10s ease .09s;
+ overflow: hidden;
+}
+
+.popup__save-btn:hover {
+  opacity: .8;
 }
 
 @media screen and (max-width: 634px) {
