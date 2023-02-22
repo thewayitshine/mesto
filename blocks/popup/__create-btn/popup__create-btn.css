@@ -1,4 +1,4 @@
-.popup__save-btn {
+.popup__create-btn {
   width: 358px;
   height: 50px;
   margin: 48px 0 0;
@@ -14,12 +14,12 @@
   overflow: hidden;
 }
 
-.popup__save-btn:hover {
+.popup__create-btn:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 634px) {
-  .popup__save-btn {
+  .popup__create-btn {
     width: 238px;
     height: 46px;
     font-size: 14px;

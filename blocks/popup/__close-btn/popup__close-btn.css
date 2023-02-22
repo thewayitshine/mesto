@@ -1,8 +1,10 @@
 .popup__close-btn {
   width: 32px;
   height: 32px;
-  margin: 0 0 8px 478px;
   padding: 0;
+  position: absolute;
+  top: -40px;
+  right: -40px;
   border: none;
   background: url(../../../images/close-button.svg) center no-repeat;
 }
@@ -11,9 +13,8 @@
   .popup__close-btn {
     width: 20px;
     height: 20px;
-    margin-left: 264px;
-    margin-bottom: 17px;
-    margin-right: 2px;
+    top: -36px;
+    right: 0;
     background: url(../../../images/close-button320.svg) center no-repeat;
   }
 }

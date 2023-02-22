@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,12 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="page">
   <div class="container">
     <header class="header">
-      <a href="#" class="link-opacity"><img class="header__logo" src="./images/header-logo.svg" alt="Логотип Место Россия"></a>
+      <a href="#" class="link-opacity"><img class="header__logo" src="./images/header-logo.svg"
+          alt="Логотип Место Россия"></a>
     </header>
     <main class="content">
       <section class="profile">
@@ -25,79 +28,66 @@
         <button class="profile__add-btn button link-opacity" type="button" aria-label="Add"></button>
       </section>
       <section class="elements">
-        <ul class="elements__list">
-          <li class="elements__card">
-            <figure class="elements__content">
-             <img class="elements__img" src="./images/Kazan.jpg" alt="Мечеть Кул-Шариф">
-             <figcaption class="elements__info">
-                <h2 class="elements__title">Казань</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-             </figcaption>
-            </figure>
-          </li>
-          <li class="elements__card">
-            <figure class="elements__content">
-              <img class="elements__img" src="./images/Innopolis.jpg" alt="Здание университета Иннополис">
-              <figcaption class="elements__info">
-                <h2 class="elements__title">Иннополис</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__card">
-            <figure class="elements__content">
-              <img class="elements__img" src="./images/Bolgar.jpg" alt="Белая Мечеть в городе Болгар">
-              <figcaption class="elements__info">
-                <h2 class="elements__title">Болгар</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__card">
-            <figure class="elements__content">
-              <img class="elements__img" src="./images/Kama-mouth.jpg" alt="Солнечный вид на Камское устье">
-              <figcaption class="elements__info">
-                <h2 class="elements__title">Камское устье</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__card">
-            <figure class="elements__content">
-              <img class="elements__img" src="./images/Sviyazhsk.jpg" alt="Остров-град Свияжск">
-              <figcaption class="elements__info">
-                <h2 class="elements__title">Свияжск</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__card">
-            <figure class="elements__content">
-              <img class="elements__img" src="./images/Volga.jpg" alt="Пароход плывёт по Волге">
-              <figcaption class="elements__info">
-                <h2 class="elements__title">Река Волга</h2>
-                <button class="elements__like-btn button" type="button" aria-label="Like"></button>
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
-    <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
+
+  <!--попап редактирования профиля-->
+  <div class="popup popup_profile-edit">
     <div class="popup__content">
+      <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="profile-data">
-        <input class="popup__string popup__string_input_name" name="userName" type="text" placeholder="Имя" value="Жак-Ив Кусто">
-        <input class="popup__string popup__string_input_job" name="userInfo" type="text" placeholder="Информация о пользователе" value="Исследователь океана">
+        <input class="popup__string popup__string_input_name" name="userName" type="text" placeholder="Имя"
+          value="Жак-Ив Кусто">
+        <input class="popup__string popup__string_input_job" name="userInfo" type="text"
+          placeholder="Информация о пользователе" value="Исследователь океана">
         <button class="popup__save-btn button link-opacity" type="submit" aria-label="Save">Сохранить</button>
       </form>
     </div>
   </div>
+  delete
+  <!--попап нового места-->
+  <div class="popup popup_place-add">
+    <div class="popup__content">
+      <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form-add" name="profile-place">
+        <input class="popup__string popup__string_input_place" name="place" type="text" placeholder="Название" value="">
+        <input class="popup__string popup__string_input_link" name="link" type="url" placeholder="Ссылка на картинку"
+          value="">
+        <button class="popup__create-btn button link-opacity" type="submit" aria-label="Create">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <!--попап открытия картинки-->
+  <div class="popup popup_image-opened">
+    <figure class="popup__figure">
+      <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
+      <img class="popup__img" src="#" alt="">
+      <figcaption class="popup__text"></figcaption>
+    </figure>
+  </div>
+
+  <!--шаблон карточки-->
+  <template class="card-template">
+    <li class="elements__card">
+      <figure class="elements__content">
+        <img class="elements__img" src="#" alt="">
+        <figcaption class="elements__info">
+          <h2 class="elements__title"></h2>
+          <button class="elements__like-btn button" type="button" aria-label="Like"></button>
+          <button class="elements__delete-btn button" type="button" aria-label="Delete"></button>
+        </figcaption>
+      </figure>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
+
 </html>
