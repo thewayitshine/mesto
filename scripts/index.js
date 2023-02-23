@@ -4,7 +4,7 @@
 
 
 //4 практическая объявление переменных
-const openEditButton = document.querySelector('.profile__edit-btn');
+const editButton = document.querySelector('.profile__edit-btn');
 const popupProfile = document.querySelector('.popup_profile-edit');
 const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__string_input_name');
@@ -13,14 +13,17 @@ const nameField = document.querySelector('.profile__title');
 const jobField = document.querySelector('.profile__subtitle');
 
 //5 практическая объявление переменных
-const openAddButton = document.querySelector('.profile__add-btn');
+const addButton = document.querySelector('.profile__add-btn');
 const popupAddPlace = document.querySelector('.popup_place-add');
 const placeInput = document.querySelector('.popup__string_input_place');
 const linkInput = document.querySelector('.popup__string_input_link');
 const imagePopUp = document.querySelector('.popup_image-opened');
 const formAddPlace = document.querySelector('.popup__form-add');
 const list = document.querySelector('.elements__list');
-const closeButton = document.querySelectorAll('.popup__close-btn');
+const closeButtons = document.querySelectorAll('.popup__close-btn');
+const cardTemplate = document.querySelector('.card-template').content;
+const fullScreenImg = document.querySelector('.popup__img');
+const fullScreenText = document.querySelector('.popup__text');
 
 
 const initialCards = [
@@ -55,21 +58,21 @@ const initialCards = [
 
 
 //функция открытия
-function popupOpen(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
 //функция закрытия
-function popupClose(item) {
+function closePopup(item) {
   item.classList.remove('popup_opened');
 }
 
 //функция открытия Edit попапа
-function popupEdit() {
+function editPopup() {
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
 
-  popupOpen(popupProfile);
+  openPopup(popupProfile);
 }
 
 //функция кнопки сохранения изменений в профиле (Сохранить)
@@ -78,20 +81,21 @@ function handleSaveFormSubmit(evt) {
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
 
-  popupClose(popupProfile);
+  closePopup(popupProfile);
 }
 
 //функция открытия Add Place попапа
-function popupAddPlaceOpen() {
+function openAddPlacePopup() {
   placeInput.value = placeInput.placeholder;
   linkInput.value = linkInput.placeholder;
 
-  popupOpen(popupAddPlace);
+  formAddPlace.reset();
+
+  openPopup(popupAddPlace);
 }
 
 //функция создания новой карточки
 function createNewCard(name, link) {
-  const cardTemplate = document.querySelector('.card-template').content;
   const cardElement = cardTemplate.querySelector('.elements__card').cloneNode(true);
 
   const cardGalleryText = cardElement.querySelector('.elements__title').textContent = name;
@@ -107,11 +111,11 @@ function createNewCard(name, link) {
   })
 
   cardElement.querySelector('.elements__img').addEventListener('click', function () {
-    popupOpen(imagePopUp);
+    openPopup(imagePopUp);
 
-    imagePopUp.querySelector('.popup__img').src = cardGalleryLink;
-    imagePopUp.querySelector('.popup__img').alt = cardGalleryAlt;
-    imagePopUp.querySelector('.popup__text').textContent = cardGalleryText;
+    fullScreenImg.src = cardGalleryLink;
+    fullScreenImg.alt = cardGalleryAlt;
+    fullScreenText.textContent = cardGalleryText;
   });
 
   return cardElement;
@@ -121,6 +125,7 @@ function createNewCard(name, link) {
 function renderArrayCards() {
   initialCards.forEach(function (item) {
     const card = createNewCard(item.name, item.link);
+
     list.append(card);
   });
 }
@@ -133,7 +138,7 @@ function handleCreateFormSubmit(evt) {
   evt.preventDefault();
   list.prepend(createNewCard(placeInput.value, linkInput.value));
 
-  popupClose(popupAddPlace);
+  closePopup(popupAddPlace);
 }
 
 
@@ -141,22 +146,22 @@ function handleCreateFormSubmit(evt) {
 
 
 //обработчик события открытия Edit попапа
-openEditButton.addEventListener('click', popupEdit);
+editButton.addEventListener('click', editPopup);
 
 //обработчик события кнопки сохранения изменений в профиле (Сохранить)
 formElement.addEventListener('submit', handleSaveFormSubmit);
 
 //обработчик события открытия Add Place попапа
-openAddButton.addEventListener('click', popupAddPlaceOpen);
+addButton.addEventListener('click', openAddPlacePopup);
 
 //обработчик события кнопки создания новой карточки (Создать)
 formAddPlace.addEventListener('submit', handleCreateFormSubmit);
 
 //обработчик события закрытия всех попапов
-closeButton.forEach(function (item) {
+closeButtons.forEach(function (item) {
   item.addEventListener('click', function () {
     const closestPopup = item.closest('.popup');
 
-    popupClose(closestPopup);
+    closePopup(closestPopup);
   });
 })
