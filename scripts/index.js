@@ -19,12 +19,12 @@ const jobField = document.querySelector('.profile__subtitle');
 const buttonAddPlace = document.querySelector('.profile__add-btn');
 
 //переменные попапа
-const popupContainers = document.querySelectorAll('.popup');
+const popupContainerList = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile-edit');
 const popupAddPlace = document.querySelector('.popup_place-add');
 const imagePopup = document.querySelector('.popup_image-opened');
-const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
-const formsPopup = document.querySelectorAll('.popup__form');
+const buttonClosePopupList = document.querySelectorAll('.popup__close-btn');
+const formList = document.querySelectorAll('.popup__form');
 const buttonPopupAddPlace = document.querySelector('.popup__button-add');
 const imgFullScreen = document.querySelector('.popup__img');
 const textFullScreen = document.querySelector('.popup__text');
@@ -50,7 +50,6 @@ function openPopup(popup) {
 function closePopup(item) {
   item.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
-  buttonPopupAddPlace.addEventListener('submit', disableButton(buttonPopupAddPlace));
 }
 
 //функция открытия Edit попапа
@@ -131,6 +130,8 @@ function handleCreateFormSubmit(evt) {
   closePopup(popupAddPlace);
 
   evt.target.reset();
+
+  disableButton(buttonPopupAddPlace, validationConfig.inactiveButtonClass);
 }
 
 
@@ -159,7 +160,7 @@ buttonAddPlace.addEventListener('click', openAddPlacePopup);
 formAddPlace.addEventListener('submit', handleCreateFormSubmit);
 
 //обработчик события закрытия всех попапов
-buttonsClosePopup.forEach(function (item) {
+buttonClosePopupList.forEach(function (item) {
   item.addEventListener('click', function () {
     const popupClosest = item.closest('.popup');
 
@@ -168,7 +169,7 @@ buttonsClosePopup.forEach(function (item) {
 })
 
 //обработчик события закрытия всех попапов через оверлей
-popupContainers.forEach(function (item) {
+popupContainerList.forEach(function (item) {
   item.addEventListener('mousedown', function (evt) {
     if (evt.target === evt.currentTarget) {
       closePopup(item);
@@ -177,7 +178,7 @@ popupContainers.forEach(function (item) {
 })
 
 //отмена стандартного поведения формы
-formsPopup.forEach(function (item) {
+formList.forEach(function (item) {
   item.addEventListener('submit', function (evt) {
     evt.preventDefault();
   })

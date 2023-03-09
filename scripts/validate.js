@@ -10,7 +10,7 @@ const validationConfig = {
 };
 
 //функция показа ошибки
-const showInputError = function (formElement, inputElement, errorMessage) {
+const showInputError = function (formElement, inputElement, errorMessage, validationConfig) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(validationConfig.inputErrorClass);
@@ -19,7 +19,7 @@ const showInputError = function (formElement, inputElement, errorMessage) {
 }
 
 //функция скрытия ошибки
-const hideInputError = function (formElement, inputElement) {
+const hideInputError = function (formElement, inputElement, validationConfig) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.remove(validationConfig.inputErrorClass);
@@ -28,38 +28,38 @@ const hideInputError = function (formElement, inputElement) {
 }
 
 //функция проверки валидности
-const checkInputValidity = function (inputElement, formElement) {
+const checkInputValidity = function (inputElement, formElement, validationConfig) {
   const isValid = inputElement.validity.valid;
 
   if (isValid) {
-    hideInputError(formElement, inputElement)
+    hideInputError(formElement, inputElement, validationConfig)
   } else {
-    showInputError(formElement, inputElement, inputElement.validationMessage)
+    showInputError(formElement, inputElement, inputElement.validationMessage, validationConfig)
   }
 }
 
 //функция отключения нерабочей кнопки
-const enableButton = function (buttonElement) {
-  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+const enableButton = function (buttonElement, validationConfig) {
+  buttonElement.classList.remove(validationConfig);
   buttonElement.removeAttribute('disabled');
 }
 
 //функция включения нерабочей кнопки
-const disableButton = function (buttonElement) {
-  buttonElement.classList.add(validationConfig.inactiveButtonClass);
+const disableButton = function (buttonElement, validationConfig) {
+  buttonElement.classList.add(validationConfig);
   buttonElement.disabled = true;
 }
 
 //функция переключения кнопки самбита
-const toggleButtonState = function (inputList, buttonElement, disabledButtonClass) {
+const toggleButtonState = function (inputList, buttonElement, validationConfig) {
   const hasInvalidInput = inputList.every(function (inputElement) {
     return inputElement.validity.valid
   })
 
   if (hasInvalidInput) {
-    enableButton(buttonElement, disabledButtonClass);
+    enableButton(buttonElement, validationConfig);
   } else {
-    disableButton(buttonElement, disabledButtonClass);
+    disableButton(buttonElement, validationConfig);
   }
 }
 
@@ -73,8 +73,8 @@ const setEventListeners = function (formElement, validationConfig) {
 
   inputList.forEach(function (inputElement) {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(inputElement, formElement);
-      toggleButtonState(inputList, submitButton);
+      checkInputValidity(inputElement, formElement, validationConfig);
+      toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass);
     })
   })
 
