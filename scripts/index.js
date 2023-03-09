@@ -3,29 +3,33 @@
 //ПЕРЕМЕННЫЕ!!!
 
 
-//4 практическая объявление переменных
+//переменные формы редактирования
+const formElement = document.forms.profile_edit;
+const nameInput = formElement.elements.name;
+const jobInput = formElement.elements.job;
+
+
 const editButton = document.querySelector('.profile__edit-btn');
 const popupProfile = document.querySelector('.popup_profile-edit');
-const formElement = document.querySelector('.popup__form');
-const nameInput = document.querySelector('.popup__string_input_name');
-const jobInput = document.querySelector('.popup__string_input_job');
 const nameField = document.querySelector('.profile__title');
 const jobField = document.querySelector('.profile__subtitle');
 
-//5 практическая объявление переменных
+//переменные формы добавления карточки
+const formAddPlace = document.forms.place_add;
+const placeInput = formAddPlace.elements.place;
+const linkInput = formAddPlace.elements.link;
+
+
 const addButton = document.querySelector('.profile__add-btn');
 const popupAddPlace = document.querySelector('.popup_place-add');
-const placeInput = document.querySelector('.popup__string_input_place');
-const linkInput = document.querySelector('.popup__string_input_link');
 const imagePopUp = document.querySelector('.popup_image-opened');
-const formAddPlace = document.querySelector('.popup__form-add');
 const list = document.querySelector('.elements__list');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
 const cardTemplate = document.querySelector('.card-template').content;
 const fullScreenImg = document.querySelector('.popup__img');
 const fullScreenText = document.querySelector('.popup__text');
 
-
+//переменная созданных карточек через объект
 const initialCards = [
   {
     name: 'Казань',
@@ -53,6 +57,9 @@ const initialCards = [
   }
 ];
 
+//6 практическая объявление переменных
+const popupContainers = document.querySelectorAll('.popup');
+const popupOpened = document.querySelector('.popup_opened');
 
 //ФУНКЦИИ!!!
 
@@ -60,11 +67,13 @@ const initialCards = [
 //функция открытия
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
 //функция закрытия
 function closePopup(item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
 //функция открытия Edit попапа
@@ -142,6 +151,14 @@ function handleCreateFormSubmit(evt) {
 }
 
 
+//функция закрытия попапа по кнопке esc
+function closePopupByEsc(evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape' && popupOpened) {
+    closePopup(popupOpened);
+  }
+}
+
 //ОБРАБОТЧИКИ СОБЫТИЯ!!!
 
 
@@ -163,5 +180,14 @@ closeButtons.forEach(function (item) {
     const closestPopup = item.closest('.popup');
 
     closePopup(closestPopup);
+  });
+})
+
+//обработчик события закрытия всех попапов через оверлей
+popupContainers.forEach(function (item) {
+  item.addEventListener('mousedown', function (evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(item);
+    }
   });
 })

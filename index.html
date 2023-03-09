@@ -41,12 +41,14 @@
     <div class="popup__content">
       <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="profile-data">
-        <input class="popup__string popup__string_input_name" name="userName" type="text" placeholder="Имя"
-          value="Жак-Ив Кусто">
-        <input class="popup__string popup__string_input_job" name="userInfo" type="text"
-          placeholder="Информация о пользователе" value="Исследователь океана">
-        <button class="popup__save-btn button link-opacity" type="submit" aria-label="Save">Сохранить</button>
+      <form class="popup__form" name="profile_edit" novalidate>
+        <input class="popup__input" name="name" type="text" placeholder="Имя" value="Жак-Ив Кусто" minlength="2"
+          maxlength="40" id="profile-name" required>
+        <span class="popup__input-error profile-name-error"></span>
+        <input class="popup__input" name="job" type="text" placeholder="Информация о пользователе"
+          value="Исследователь океана" minlength="2" maxlength="200" id="profile-job" required>
+        <span class="popup__input-error profile-job-error popup__input-error_active"></span>
+        <button class="popup__button button link-opacity" type="submit" aria-label="Save">Сохранить</button>
       </form>
     </div>
   </div>
@@ -56,11 +58,14 @@
     <div class="popup__content">
       <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form-add" name="profile-place">
-        <input class="popup__string popup__string_input_place" name="place" type="text" placeholder="Название" value="">
-        <input class="popup__string popup__string_input_link" name="link" type="url" placeholder="Ссылка на картинку"
-          value="">
-        <button class="popup__create-btn button link-opacity" type="submit" aria-label="Create">Создать</button>
+      <form class="popup__form" name="place_add" novalidate>
+        <input class="popup__input" name="place" type="text" placeholder="Название" value="" minlength="2"
+          maxlength="30" id="add-place" required>
+        <span class="popup__input-error add-place-error"></span>
+        <input class="popup__input" name="link" type="url" placeholder="Ссылка на картинку" value="" id="add-link"
+          required>
+        <span class="popup__input-error add-link-error"></span>
+        <button class="popup__button button link-opacity" type="submit" aria-label="Create">Создать</button>
       </form>
     </div>
   </div>
@@ -87,6 +92,7 @@
       </figure>
     </li>
   </template>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
