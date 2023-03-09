@@ -1,5 +1,9 @@
 .profile__info {
-  margin: 22px 244px 0 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
 }
 
 @media screen and (max-width: 930px) {

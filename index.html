@@ -17,13 +17,15 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто в красной шапке">
         <div class="profile__info">
-          <div class="profile__name">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-btn button link-opacity" type="button" aria-label="Edit"></button>
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто в красной шапке">
+          <div>
+            <div class="profile__name">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn button link-opacity" type="button" aria-label="Edit"></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <button class="profile__add-btn button link-opacity" type="button" aria-label="Add"></button>
       </section>
@@ -65,7 +67,8 @@
         <input class="popup__input" name="link" type="url" placeholder="Ссылка на картинку" value="" id="add-link"
           required>
         <span class="popup__input-error add-link-error"></span>
-        <button class="popup__button button link-opacity" type="submit" aria-label="Create">Создать</button>
+        <button class="popup__button popup__button-add button link-opacity" type="submit"
+          aria-label="Create">Создать</button>
       </form>
     </div>
   </div>
@@ -93,6 +96,7 @@
     </li>
   </template>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 

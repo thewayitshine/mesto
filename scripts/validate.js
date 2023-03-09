@@ -1,6 +1,6 @@
 
 //переменная объекта параметров
-const selectorsAndClasses = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -13,62 +13,67 @@ const selectorsAndClasses = {
 const showInputError = function (formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.add(selectorsAndClasses.inputErrorClass);
+  inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(selectorsAndClasses.errorClass)
+  errorElement.classList.add(validationConfig.errorClass)
 }
 
 //функция скрытия ошибки
 const hideInputError = function (formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.remove(selectorsAndClasses.inputErrorClass);
+  inputElement.classList.remove(validationConfig.inputErrorClass);
   errorElement.textContent = '';
-  errorElement.classList.remove(selectorsAndClasses.errorClass);
+  errorElement.classList.remove(validationConfig.errorClass);
 }
 
 //функция проверки валидности
-const checkInputValidity = function (inputElement) {
+const checkInputValidity = function (inputElement, formElement) {
   const isValid = inputElement.validity.valid;
-  const closestForm = inputElement.closest(selectorsAndClasses.formSelector);
 
   if (isValid) {
-    hideInputError(closestForm, inputElement)
+    hideInputError(formElement, inputElement)
   } else {
-    showInputError(closestForm, inputElement, inputElement.validationMessage)
+    showInputError(formElement, inputElement, inputElement.validationMessage)
   }
 }
 
+//функция отключения нерабочей кнопки
+const enableButton = function (buttonElement) {
+  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+}
+
+//функция включения нерабочей кнопки
+const disableButton = function (buttonElement) {
+  buttonElement.classList.add(validationConfig.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 //функция переключения кнопки самбита
-const toggleButtonState = function (inputList, buttonElement) {
+const toggleButtonState = function (inputList, buttonElement, disabledButtonClass) {
   const hasInvalidInput = inputList.every(function (inputElement) {
     return inputElement.validity.valid
   })
 
   if (hasInvalidInput) {
-    buttonElement.classList.remove(selectorsAndClasses.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    enableButton(buttonElement, disabledButtonClass);
   } else {
-    buttonElement.classList.add(selectorsAndClasses.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    disableButton(buttonElement, disabledButtonClass);
   }
 }
 
 //функция добавления проверки валидности и переключении кнопки сабмита на инпуты
-const setEventListeners = function (formElement, selectorsAndClasses) {
+const setEventListeners = function (formElement, validationConfig) {
 
-  formElement.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  })
-
-  const inputList = Array.from(formElement.querySelectorAll(selectorsAndClasses.inputSelector));
-  const submitButton = formElement.querySelector(selectorsAndClasses.submitButtonSelector);
+  const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
+  const submitButton = formElement.querySelector(validationConfig.submitButtonSelector);
 
   toggleButtonState(inputList, submitButton);
 
   inputList.forEach(function (inputElement) {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(inputElement);
+      checkInputValidity(inputElement, formElement);
       toggleButtonState(inputList, submitButton);
     })
   })
@@ -76,13 +81,13 @@ const setEventListeners = function (formElement, selectorsAndClasses) {
 }
 
 //функция добавления валидности на все формы
-const enableValidation = function (selectorsAndClasses) {
-  const formList = document.querySelectorAll(selectorsAndClasses.formSelector);
+const enableValidation = function (validationConfig) {
+  const formList = document.querySelectorAll(validationConfig.formSelector);
 
   formList.forEach(function (formElement) {
-    setEventListeners(formElement, selectorsAndClasses);
+    setEventListeners(formElement, validationConfig);
   })
 }
 
 
-enableValidation(selectorsAndClasses);
+enableValidation(validationConfig);
