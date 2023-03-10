@@ -40,13 +40,13 @@ const checkInputValidity = function (inputElement, formElement, validationConfig
 
 //функция отключения нерабочей кнопки
 const enableButton = function (buttonElement, validationConfig) {
-  buttonElement.classList.remove(validationConfig);
+  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
   buttonElement.removeAttribute('disabled');
 }
 
 //функция включения нерабочей кнопки
 const disableButton = function (buttonElement, validationConfig) {
-  buttonElement.classList.add(validationConfig);
+  buttonElement.classList.add(validationConfig.inactiveButtonClass);
   buttonElement.disabled = true;
 }
 
@@ -69,12 +69,13 @@ const setEventListeners = function (formElement, validationConfig) {
   const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
   const submitButton = formElement.querySelector(validationConfig.submitButtonSelector);
 
-  toggleButtonState(inputList, submitButton);
+
+  toggleButtonState(inputList, submitButton, validationConfig);
 
   inputList.forEach(function (inputElement) {
     inputElement.addEventListener('input', function () {
       checkInputValidity(inputElement, formElement, validationConfig);
-      toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass);
+      toggleButtonState(inputList, submitButton, validationConfig);
     })
   })
 
