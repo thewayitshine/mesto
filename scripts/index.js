@@ -131,7 +131,7 @@ function handleCreateFormSubmit(evt) {
 
   evt.target.reset();
 
-  disableButton(buttonPopupAddPlace, validationConfig.inactiveButtonClass);
+  disableButton(buttonPopupAddPlace, validationConfig);
 }
 
 
