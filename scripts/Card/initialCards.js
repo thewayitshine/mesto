@@ -1,5 +1,5 @@
 //переменная созданных карточек через объект
-const initialCards = [
+export const initialCards = [
   {
     name: 'Казань',
     link: 'https://i.postimg.cc/c1gNQnFR/Kazan.jpg'
@@ -25,3 +25,4 @@ const initialCards = [
     link: 'https://i.postimg.cc/s2jrSHLx/Volga.jpg'
   }
 ];
+

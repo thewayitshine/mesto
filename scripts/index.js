@@ -1,3 +1,10 @@
+//ИМПОРТ!!!
+
+import { validationConfig } from './Validator/config.js';
+import { FormValidator } from './Validator/FormValidator.js';
+import { initialCards } from './Card/initialCards.js';
+import { Card } from './Card/Card.js';
+
 
 //ПЕРЕМЕННЫЕ!!!
 
@@ -79,41 +86,16 @@ function openAddPlacePopup() {
   openPopup(popupAddPlace);
 }
 
-//функция создания новой карточки
-function createNewCard(name, link) {
-  const cardElement = cardTemplateClone.cloneNode(true);
-  const cardGalleryImg = cardElement.querySelector('.elements__img');
-  const cardGalleryTitle = cardElement.querySelector('.elements__title');
-  const cardGalleryLikeBtn = cardElement.querySelector('.elements__like-btn');
-  const cardGalleryDeleteBtn = cardElement.querySelector('.elements__delete-btn');
-
-  const cardGalleryText = cardGalleryTitle.textContent = name;
-  const cardGalleryAlt = cardGalleryImg.alt = name;
-  const cardGalleryLink = cardGalleryImg.src = link;
-
-  cardGalleryLikeBtn.addEventListener('click', function () {
-    cardGalleryLikeBtn.classList.toggle('elements__like-btn_active');
-  })
-
-  cardGalleryDeleteBtn.addEventListener('click', function () {
-    cardElement.remove();
-  })
-
-  cardGalleryImg.addEventListener('click', function () {
-    openPopup(imagePopup);
-
-    imgFullScreen.src = cardGalleryLink;
-    imgFullScreen.alt = cardGalleryAlt;
-    textFullScreen.textContent = cardGalleryText;
-  });
-
-  return cardElement;
+//функция создания карточки
+function createCard(data, templateSelector) {
+  const card = new Card(data, templateSelector, openPopup);
+  return card.renderCard();
 }
 
 //функция рендеринга карточек из массива
 function renderArrayCards() {
   initialCards.forEach(function (item) {
-    const card = createNewCard(item.name, item.link);
+    const card = createCard(item, cardTemplateClone);
 
     cardsContainer.append(card);
   });
@@ -125,13 +107,16 @@ renderArrayCards();
 //функция рендеринга новой карточки
 function handleCreateFormSubmit(evt) {
   evt.preventDefault();
-  cardsContainer.prepend(createNewCard(placeInput.value, linkInput.value));
+  cardsContainer.prepend(createCard({
+    name: placeInput.value,
+    link: linkInput.value
+  }, cardTemplateClone));
 
   closePopup(popupAddPlace);
 
   evt.target.reset();
 
-  disableButton(buttonPopupAddPlace, validationConfig);
+  disableButtonActive()
 }
 
 
@@ -143,6 +128,19 @@ function closePopupByEsc(evt) {
   }
 }
 
+//функция валидации
+function enableValidation(form) {
+  const formValidation = new FormValidator(validationConfig, form);
+  formValidation.enableValidation();
+}
+
+formList.forEach(enableValidation);
+
+//функция состояния кнопки disable
+function disableButtonActive() {
+  const buttonDisabled = new FormValidator(validationConfig, formAddPlace);
+  buttonDisabled.disableButton();
+}
 
 //ОБРАБОТЧИКИ СОБЫТИЯ!!!
 
