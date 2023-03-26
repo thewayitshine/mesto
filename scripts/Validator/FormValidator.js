@@ -46,7 +46,6 @@ export class FormValidator {
     this._button.removeAttribute('disabled');
   }
 
-
   //функция включения нерабочей кнопки
   disableButton() {
     this._button.classList.add(this._inactiveButtonClass);
@@ -66,7 +65,15 @@ export class FormValidator {
     }
 
   }
+  //функция сбрасывания ошибки
+  resetValidation() {
+    this._toggleButtonState();
 
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError('', inputElement)
+    });
+
+  }
 
   //функция добавления проверки валидности и переключении кнопки сабмита на инпуты
   _setEventListeners() {

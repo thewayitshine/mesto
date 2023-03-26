@@ -29,19 +29,11 @@ const buttonAddPlace = document.querySelector('.profile__add-btn');
 const popupContainerList = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile-edit');
 const popupAddPlace = document.querySelector('.popup_place-add');
-const imagePopup = document.querySelector('.popup_image-opened');
 const buttonClosePopupList = document.querySelectorAll('.popup__close-btn');
 const formList = document.querySelectorAll('.popup__form');
-const buttonPopupAddPlace = document.querySelector('.popup__button-add');
-const imgFullScreen = document.querySelector('.popup__img');
-const textFullScreen = document.querySelector('.popup__text');
-
-//переменная шаблона
-const cardTemplate = document.querySelector('.card-template').content;
 
 //переменные элементов
 const cardsContainer = document.querySelector('.elements__list');
-const cardTemplateClone = cardTemplate.querySelector('.elements__card');
 
 
 //ФУНКЦИИ!!!
@@ -63,6 +55,8 @@ function closePopup(item) {
 function openEditProfilePopup() {
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
+
+  profileFormValidation.resetValidation();
 
   openPopup(popupProfile);
 }
@@ -95,7 +89,7 @@ function createCard(data, templateSelector) {
 //функция рендеринга карточек из массива
 function renderArrayCards() {
   initialCards.forEach(function (item) {
-    const card = createCard(item, cardTemplateClone);
+    const card = createCard(item, '.card-template');
 
     cardsContainer.append(card);
   });
@@ -110,13 +104,13 @@ function handleCreateFormSubmit(evt) {
   cardsContainer.prepend(createCard({
     name: placeInput.value,
     link: linkInput.value
-  }, cardTemplateClone));
+  }, '.card-template'));
 
   closePopup(popupAddPlace);
 
   evt.target.reset();
 
-  disableButtonActive()
+  formAddPlaceValidation.disableButton();
 }
 
 
@@ -126,20 +120,6 @@ function closePopupByEsc(evt) {
     const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened);
   }
-}
-
-//функция валидации
-function enableValidation(form) {
-  const formValidation = new FormValidator(validationConfig, form);
-  formValidation.enableValidation();
-}
-
-formList.forEach(enableValidation);
-
-//функция состояния кнопки disable
-function disableButtonActive() {
-  const buttonDisabled = new FormValidator(validationConfig, formAddPlace);
-  buttonDisabled.disableButton();
 }
 
 //ОБРАБОТЧИКИ СОБЫТИЯ!!!
@@ -182,3 +162,12 @@ formList.forEach(function (item) {
   })
 })
 
+//валидация формы редактирования
+profileForm.addEventListener('submit', handleSaveFormSubmit);
+const profileFormValidation = new FormValidator(validationConfig, profileForm);
+profileFormValidation.enableValidation();
+
+//валидация формы добавления карточки
+formAddPlace.addEventListener('submit', handleCreateFormSubmit);
+const formAddPlaceValidation = new FormValidator(validationConfig, formAddPlace);
+formAddPlaceValidation.enableValidation();
