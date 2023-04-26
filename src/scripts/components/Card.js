@@ -1,10 +1,10 @@
 export class Card {
 
-  constructor(data, templateSelector, popupImageOpened) {
+  constructor({ data, templateSelector }, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._popupImageOpened = popupImageOpened;
+    this._handleCardClick = handleCardClick;
     this._element = this._getTemplate();
     this._buttonLike = this._element.querySelector('.elements__like-btn');
     this._buttonDelete = this._element.querySelector('.elements__delete-btn');
@@ -30,7 +30,7 @@ export class Card {
   }
 
   _openFullImgPopup() {
-    this._popupImageOpened(this._imagePopup);
+    this._handleCardClick(this._imagePopup);
     this._textFullScreen.textContent = this._name;
     this._imgFullScreen.src = this._link;
     this._imgFullScreen.alt = this._name;

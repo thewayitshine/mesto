@@ -1,4 +1,3 @@
-
 //переменная объекта параметров
 export const validationConfig = {
   formSelector: '.popup__form',
