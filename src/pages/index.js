@@ -1,6 +1,6 @@
 
 
-//import './index.css';
+import './index.css';
 import { validationConfig } from '../scripts/utils/config.js';
 import { FormValidator } from '../scripts/components/FormValidator.js';
 import { initialCards } from '../scripts/utils/initialCards.js';
@@ -30,14 +30,16 @@ import {
 function createCard(item) {
   const card = new Card({
     data: item,
-    templateSelector: '.card-template',
-    handleCardClick: (name, link) => {
-      popupWithImage.open(name, link);
-    }
-  });
+    templateSelector: '.card-template'
+  },
+    handleCardClick);
   const cardElement = card.renderCard();
 
   return cardElement;
+}
+
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
 }
 
 formAddPlace.addEventListener('submit', formAddPlace);
