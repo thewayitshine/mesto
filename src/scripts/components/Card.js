@@ -10,9 +10,6 @@ export class Card {
     this._buttonDelete = this._element.querySelector('.elements__delete-btn');
     this._title = this._element.querySelector('.elements__title');
     this._img = this._element.querySelector('.elements__img');
-    this._imagePopup = document.querySelector('.popup_image-opened');
-    this._imgFullScreen = this._imagePopup.querySelector('.popup__img');
-    this._textFullScreen = this._imagePopup.querySelector('.popup__text');
   }
 
   _getTemplate() {
@@ -30,10 +27,7 @@ export class Card {
   }
 
   _openFullImgPopup() {
-    this._handleCardClick(this._imagePopup);
-    this._textFullScreen.textContent = this._name;
-    this._imgFullScreen.src = this._link;
-    this._imgFullScreen.alt = this._name;
+    this._handleCardClick(this._name, this._link);
   }
 
 

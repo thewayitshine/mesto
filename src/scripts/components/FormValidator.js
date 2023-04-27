@@ -6,9 +6,9 @@ export class FormValidator {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
-    this._inputErrorClass = this._form.querySelector('popup__input_type_error');
-    this._button = this._form.querySelector('.popup__button');
-    this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
+    this._inputErrorClass = config.inputErrorClass;
+    this._button = this._form.querySelector(config.submitButtonSelector);
+    this._inputList = Array.from(this._form.querySelectorAll(config.inputSelector));
   }
 
   //функция показа ошибки
