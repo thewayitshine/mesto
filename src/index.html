@@ -17,7 +17,9 @@
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Жак-Ив Кусто в красной шапке">
+          <div class="profile__avatar-edit">
+            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+          </div>
           <div class="profile__container">
             <div class="profile__name">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -72,6 +74,33 @@
     </div>
   </div>
 
+  <!--попап подтверждения-->
+  <div class="popup popup_confirmation">
+    <div class="popup__content">
+      <h3 class="popup__title">Вы уверены?</h3>
+      <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
+      <form class="popup__form">
+        <button class="popup__button popup__button-add button link-opacity" type="submit"
+          aria-label="Create">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <!--попап редактирования аватара-->
+  <div class="popup popup_edit-avatar">
+    <div class="popup__content">
+      <button class="popup__close-btn button link-opacity" type="button" aria-label="Close"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form popup__form-avatar-edit" name="avatar_edit" novalidate>
+        <input class="popup__input" name="avatar" type="url" placeholder="Ссылка на картинку" value="" id="edit-avatar"
+          required>
+        <span class="popup__input-error edit-avatar-error"></span>
+        <button class="popup__button popup__button-avatar button link-opacity" type="submit"
+          aria-label="Create">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <!--попап открытия картинки-->
   <div class="popup popup_image-opened">
     <figure class="popup__figure">
@@ -88,8 +117,11 @@
         <img class="elements__img" src="#" alt="">
         <figcaption class="elements__info">
           <h2 class="elements__title"></h2>
-          <button class="elements__like-btn button" type="button" aria-label="Like"></button>
           <button class="elements__delete-btn button" type="button" aria-label="Delete"></button>
+          <div>
+            <button class="elements__like-btn button" type="button" aria-label="Like"></button>
+            <p class="elements__like-counter">0</p>
+          </div>
         </figcaption>
       </figure>
     </li>
